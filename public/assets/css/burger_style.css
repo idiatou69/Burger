@@ -1,7 +1,7 @@
-ul {
+li {
     padding: 5px;
     margin: 5px;
-    background: #faebd7;
+ 
   }
   
   .label {
@@ -18,3 +18,7 @@ ul {
     margin-bottom: 5px;
   }
   
+  body{
+    background:yellowgreen;
+    text-align: center;
+  }

@@ -1,7 +1,16 @@
 // Import MySQL connection.
 var connection = require("../config/connection.js");
-var connection = require("./connection"); 
-
+// var orm = {
+//   all: function (tableInput, callBackModel) {
+//     var queryString = "select *  FROM " + tableInput + ";";
+//     connection.query(queryString, function (err, resultOrm) {
+//       if (err) {
+//         throw err;
+//       }
+//       callBackModel(resultOrm);
+//     });
+//   },
+// }
 // Helper function for SQL syntax.
 // Let's say we want to pass 3 values into the mySQL query.
 // In order to write the query, we need 3 question marks.
@@ -42,16 +51,16 @@ function objToSql(ob) {
 
 // Object for all our SQL statement functions.
 var orm = {
-  all: function(tableInput, cb) {
+  all: function (tableInput, cb) {
     var queryString = "SELECT * FROM " + tableInput + ";";
-    connection.query(queryString, function(err, result) {
+    connection.query(queryString, function (err, result) {
       if (err) {
         throw err;
       }
       cb(result);
     });
   },
-  create: function(table, cols, vals, cb) {
+  create: function (table, cols, vals, callBackModel) {
     var queryString = "INSERT INTO " + table;
 
     queryString += " (";
@@ -63,16 +72,16 @@ var orm = {
 
     console.log(queryString);
 
-    connection.query(queryString, vals, function(err, result) {
+    connection.query(queryString, vals, function (err, result) {
       if (err) {
         throw err;
       }
 
-      cb(result);
+      callBackModel(result);
     });
   },
   // An example of objColVals would be {name: true}
-  update: function(table, objColVals, condition, cb) {
+  update: function (table, objColVals, condition, callBackModel) {
     var queryString = "UPDATE " + table;
 
     queryString += " SET ";
@@ -81,20 +90,20 @@ var orm = {
     queryString += condition;
 
     console.log(queryString);
-    connection.query(queryString, function(err, result) {
+    connection.query(queryString, function (err, result) {
       if (err) {
         throw err;
       }
 
-      cb(result);
+      callBackModel(result);
     });
   },
-  delete: function(table, condition, cb) {
+  delete: function (table, condition, cb) {
     var queryString = "DELETE FROM " + table;
     queryString += " WHERE ";
     queryString += condition;
 
-    connection.query(queryString, function(err, result) {
+    connection.query(queryString, function (err, result) {
       if (err) {
         throw err;
       }

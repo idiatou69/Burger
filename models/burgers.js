@@ -1,27 +1,35 @@
 //dependencies//
 var orm = require("../config/orm.js");
 //creating a variable called hamburger//
-var hamburger = {
-    getAll: function (callBack) {
-        orm.all("bugers", function (res) {
-            callBack(res)
-        })
-    },
-    // the variable name are arrays
-    create: function (name, callBack) {
-        orm.create("burgers", ["burger_name", "devoured"], [name, false], callBack)
-    },
-    update: function (id, callBack) {
-        orm.update("burgers", { devoured: true, }, "id=" + id, callBack)
+var burger = {
+    all: function (callBackController) {
+        orm.all("burgers", function (resultsOrm) {
+            callBackController(resultsOrm);
+        });
     },
 
-    delete: function(condition, callBack){
-        orm.delete("burgers", condition, function(res){
-            callBack(res);
-        })
-    }
+    create: function (cols, vals, callBackController) {
+        orm.create("burgers", cols, vals, function (resultsOrm) {
+            callBackController(resultsOrm);
+        });
+    },
+
+    update: function (cols, vals, callBackController) {
+        orm.update("burgers", cols, vals, function (resultsOrm) {
+            callBackController(resultsOrm);
+        });
+    },
+
+    
+delete: function (condition, callBackController) {
+    orm.delete("burgers", condition, function (res) {
+        callBack(res);
+    })
+}
 
 }
+
+
 //module exports
-module.exports = hamburger;
+module.exports = burger;
 

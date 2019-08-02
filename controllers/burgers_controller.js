@@ -4,26 +4,72 @@ var router = express.Router();
 var burger = require("../models/burgers.js");
 // create all our routes and set up logic within those routes where required.
 router.get("/", function (req, res) {
-    burger.all("/", function (data) {
+
+    console.log('root found');
+    
+    burger.all(function (resultsOrm) {
         var hbsObject = {
-            burgers: data
+            burgers: resultsOrm
         };
         console.log(hbsObject);
         res.render("index", hbsObject);
     });
 });
+
+// (".create-form").normalize("submit", function (event) {
+//     event.preventDefault();
+//     var newBurger = {
+//         name: $("#bu").val().trim(),
+//         devoured: $("[name=devoured]: checked").val().trim()
+//     };
+//     //send the post request.
+//     $.ajax("/api/burgers", {
+//         type: "post",
+//         data: newBurger
+//     }).then(
+//         function () {
+//             console.log("created new burger");
+//             //reload the page to get  the updated list
+//             location.reload();
+//         }
+//     );
+// });
+
+
 router.post("/api/burgers", function (req, res) {
     burger.create([
-        "name", "devoured"
+        "burger_name", "devoured"
     ], [
-            req.body.name, req.body.devoured
+            req.body.burger_name, req.body.devoured
         ], function (result) {
             //send back the ID of the the new quote
             res.json({ id: result.insertId });
         });
 
 });
-router.put("/api/cats/:id", function (req, res) {
+
+// $(".change-burger").on("click", function (event) {
+//     var id = $(this).data("id");
+//     var newBurger = $(this).data("newBurger");
+
+//     var newBurger = {
+//         burger: newBurger
+//     };
+//     // send the put request.
+//     $.ajax("api/burgers/" + id , {
+//         type: "PUT",
+//         data: newBurgerState
+//     }).then(
+//         function () {
+//             console.log("changed burger to ", newBurger);
+//             //reload the page toupdate list
+//             location.reload();
+//         }
+//     );
+// });
+
+
+router.put("/api/burgers/:id", function (req, res) {
     var condition = "id = " + req.params.id;
     console.log("condition", condition);
     burger.update({
@@ -38,10 +84,29 @@ router.put("/api/cats/:id", function (req, res) {
     });
 });
 
+
+
+// $(".delete-burger").on("click", function (event) {
+//     var id = $(this).data("id");
+
+//     // send the delete request.
+//     $.ajax("api/burgers/" + id, {
+//         type: "DELETE",
+//     }).then(
+//         function () {
+//             console.log("delete burger ", id);
+//             //reload the page toupdate list
+//             location.reload();
+//         }
+//     );
+// });
+
+
+
 router.delete("/api/burgers/:id", function (req, res) {
     var condition = "id = " + req.params.id;
-    burger.delete(condition, function (result) {
-        if (result.affectedRows == 0) {
+    burger.delete(condition, function (resultsOrm) {
+        if (resultsOrm.affectedRows == 0) {
             // if no rows were changed, then the ID must not so 404
             return res.status(404).end();
         } else {
