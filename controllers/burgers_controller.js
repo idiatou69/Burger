@@ -41,7 +41,7 @@ router.post("/api/burgers", function (req, res) {
 
     var devoured = 0;
     if (req.body.devoured === "false")
-        devoured = 0;
+        devoured = 1;
     else
         devoured = 1;
 
@@ -85,7 +85,7 @@ router.put("/api/burgers/:id", function (req, res) {
     console.log(req.body)
 
     var devoured = 0;
-    if (req.body.devoured === "false")
+    if (req.body.devoured === "true")
         devoured = 0;
     else
         devoured = 1;
