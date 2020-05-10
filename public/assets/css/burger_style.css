@@ -1,8 +1,43 @@
 li {
     padding: 5px;
     margin: 5px;
+    
  
   }
+  .main{
+    background-size: 30px;
+    background-color: ivory;
+    padding: 10px;
+    /* margin: 10px; */
+    width: 100%;
+    text-align: center;
+    
+  }
+  .main2{
+    background-size: 30px;
+    background-color: ivory;
+    padding: 10px;
+    margin:20%;
+    margin-top: 10px;
+   
+  }
+  .main3{
+    background-size: 30px;
+    background-color: ivory;
+    padding: 10px;
+    margin:20%;
+    margin-top: 10px;
+    margin:20%;
+  }
+  h2{
+    /* float: left; */
+    background-size: 30px;
+    background-color: ivory;
+    padding: 10px;
+    margin:20%;
+    margin-top:10px;
+  }
+
   
   .label {
     font-weight: bold;
@@ -20,7 +55,9 @@ li {
   
   body{
     /* background:yellowgreen; */
-    background-image: url(../img/img.jpg);
+    background-image: url(../img/img2.jpg);
+    background-size: 100%;
+    background-attachment: fixed;
   
     
     text-align: center;
