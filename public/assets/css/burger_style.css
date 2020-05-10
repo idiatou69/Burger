@@ -19,6 +19,9 @@ li {
   }
   
   body{
-    background:yellowgreen;
+    /* background:yellowgreen; */
+    background-image: url(../img/img.jpg);
+  
+    
     text-align: center;
   }
