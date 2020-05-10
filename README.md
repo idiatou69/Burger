@@ -1,4 +1,5 @@
 # Burger
+# view the app https://idiatou-burger-live1.herokuapp.com/
 Welcome to my Burger Application if you like it please check out my Github Profile to see my repositories.
 
 Burger is a app that you have 3 different burgers suggestion the vegie, the chicken and beef .
